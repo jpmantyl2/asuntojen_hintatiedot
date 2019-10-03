@@ -7,7 +7,7 @@ Created on Mon Sep 16 23:22:04 2019
 
 import requests
 import pandas as pd
-import re
+#import re
 import sqlalchemy
 from bs4 import BeautifulSoup
 
@@ -36,7 +36,7 @@ for postcode in postcodes:
             print(f"URL: {url}")
             raise(IOError)
             
-        soup = BeautifulSoup(sorsa,features="lxml")
+        soup = BeautifulSoup(sorsa,features="html.parser")
         
         data_page = []
         blocks = soup.body.find_all('tbody')

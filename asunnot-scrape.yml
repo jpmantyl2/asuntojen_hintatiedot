@@ -1,0 +1,9 @@
+name: asunnot-scrape
+dependencies:
+  - python
+  - numpy
+  - pandas
+  - sqlalchemy
+  - Beautifulsoup4
+  - requests
+  - psycopg2
