@@ -11,8 +11,10 @@ import pandas as pd
 import sqlalchemy
 from bs4 import BeautifulSoup
 
-
-postcodes = set(pd.read_json('postcodes.json',dtype=str)['postcode'])
+#test engine
+engine = sqlalchemy.create_engine('postgresql://jpmantyl@:5432/jpmantyl')
+print("engine tested")
+postcodes = set(pd.read_json('/home/users/jpmantyl/asuntojen_hintatiedot/postcodes.json',dtype=str)['postcode'])
 
 data = []
 url_pre = r"https://asuntojen.hintatiedot.fi/haku/?search=1&l=0&c=&cr=1&pc=0&nc=0&h=1&h=2&h=3&r=1&r=2&r=3&r=4&amin=&amax=&submit=seuraava+sivu+%C2%BB&ps="
@@ -82,6 +84,6 @@ df['rakennusvuosi'] = pd.to_numeric(df['rakennusvuosi'])
 
 
 
-engine = sqlalchemy.create_engine('postgresql://jpmantyl@localhost:5432/jpmantyl')
+engine = sqlalchemy.create_engine('postgresql://jpmantyl@:5432/jpmantyl')
 df.to_sql('asunnot_asuntojen_hintatiedot', engine, index=False, method='multi', if_exists='append')
 
