@@ -19,6 +19,7 @@ postcodes = set(pd.read_json('/home/users/jpmantyl/asuntojen_hintatiedot/postcod
 data = []
 url_pre = r"https://asuntojen.hintatiedot.fi/haku/?search=1&l=0&c=&cr=1&pc=0&nc=0&h=1&h=2&h=3&r=1&r=2&r=3&r=4&amin=&amax=&submit=seuraava+sivu+%C2%BB&ps="
 
+#for postcode in ['00200']:
 for postcode in postcodes:
 
     data_postcode = []
@@ -47,7 +48,8 @@ for postcode in postcodes:
             for row in rows:
                 cols = row.find_all('td')
                 cols = [ele.text.strip() for ele in cols]
-                if len(cols)==11:
+#                print(len(cols))
+                if len(cols)==12:
                     pc = [postcode]
                     pc.extend([ele for ele in cols])
                     data_page.append(pc)
@@ -70,6 +72,7 @@ column_names = ['postinumero'
                 ,'kerros'
                 ,'hissi'
                 ,'kunto'
+                ,'tontti'
                 ,'energialuokka']
 df = pd.DataFrame(data,columns=column_names)
 
@@ -82,8 +85,7 @@ df['velaton_hinta'] = pd.to_numeric(df['velaton_hinta'])
 df['neliohinta'] = pd.to_numeric(df['neliohinta'])
 df['rakennusvuosi'] = pd.to_numeric(df['rakennusvuosi'])
 
-
-
+#print(df['energialuokka'])
 engine = sqlalchemy.create_engine('postgresql://jpmantyl@:5432/jpmantyl')
 df.to_sql('asunnot_asuntojen_hintatiedot', engine, index=False, method='multi', if_exists='append')
 
