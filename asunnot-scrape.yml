@@ -9,5 +9,5 @@ dependencies:
   - psycopg2
 variables:
   CONN_STR: postgresql://jpmantyl@:5432/jpmantyl
-  POSTCODES_FILE: ./postcodes.json
-  #POSTCODES_FILE: /home/users/jpmantyl/asuntojen_hintatiedot/postcodes.json
+  POSTCODES_FILE: ./postcodes/postcodes.json
+  #POSTCODES_FILE: /home/users/jpmantyl/asuntojen_hintatiedot/postcodes/postcodes.json

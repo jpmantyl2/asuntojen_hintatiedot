@@ -94,7 +94,7 @@ df['neliohinta'] = pd.to_numeric(df['neliohinta'])
 df['rakennusvuosi'] = pd.to_numeric(df['rakennusvuosi'])
 
 # Append df into database
-df.to_sql('asunnot_asuntojen_hintatiedot', engine, index=False, method='multi', if_exists='append')
+#df.to_sql('asunnot_asuntojen_hintatiedot', engine, index=False, method='multi', if_exists='append')
 
 # Print information from which the successful code execution can be verified.
 # An email containing printed information is automatically sent to owner in Kapsi environment when this code is run with crontab :)
